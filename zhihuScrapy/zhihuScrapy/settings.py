@@ -67,7 +67,7 @@ DEFAULT_REQUEST_HEADERS = {
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   'zhihuScrapy.pipelines.ZhihuscrapyPipeline': 300,
+   'zhihuScrapy.pipelines.MongoPipeline': 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -90,3 +90,10 @@ HTTPCACHE_EXPIRATION_SECS = 0
 HTTPCACHE_DIR = 'httpcache'
 HTTPCACHE_IGNORE_HTTP_CODES = []
 HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+
+# Configure MongoDB
+# MONGODB_HOST = 'localhost'
+# MONGODB_PORT = 27017
+MONGODB_URI = 'mongodb://localhost:27017'
+MONGODB_DBNAME = 'zhihu_data'
