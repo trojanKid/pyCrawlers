@@ -13,7 +13,7 @@ class ZhihuSpider(scrapy.Spider):
                   'offset={offset}&amp;limit={limit}'
     followees_url = 'https://www.zhihu.com/api/v4/members/{user}/followees?include={include}&amp;' \
                     'offset={offset}&amp;limit={limit}'
-    start_user = 'sizhuren'
+    start_user = 'pansz'
     user_query = 'locations,employments,gender,educations,business,voteup_count,thanked_Count,follower_count,' \
                  'following_count,cover_url,following_topic_count,following_question_count,following_favlists_count,' \
                  'following_columns_count,answer_count,articles_count,pins_count,question_count,' \
@@ -38,7 +38,7 @@ class ZhihuSpider(scrapy.Spider):
         yield items
 
         yield Request(
-            self.follows_url.format(user=result.get('url_token'), include=self.follows_query, limit=20, offset=0),
+            self.follows_url.format(user=result.get('url_token'), include=self.follows_query, limit=50, offset=0),
             self.parse_follows)
         yield Request(
             self.followees_url.format(user=result.get('url_token'), include=self.follows_query, limit=20, offset=0),
