@@ -97,3 +97,6 @@ ITEM_PIPELINES = {
 # MONGODB_PORT = 27017
 MONGODB_URI = 'mongodb://localhost:27017'
 MONGODB_DBNAME = 'zhihu_data'
+
+#set defualt log error
+LOG_LEVEL = 'ERROR'

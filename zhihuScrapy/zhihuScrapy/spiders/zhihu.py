@@ -3,8 +3,6 @@ import scrapy
 from scrapy.http import Request
 import json
 from zhihuScrapy.items import UserItem
-import logging
-
 
 class ZhihuSpider(scrapy.Spider):
     name = 'zhihu'
@@ -23,12 +21,7 @@ class ZhihuSpider(scrapy.Spider):
                  'description,hosted_live_count,participated_live_count,allow_message,industry_category,org_name,' \
                  'org_homepage,badge[?(type=best_answerer)].topics'
     follows_query = 'url_token'
-    search_depth = 2
-
-    def __init__(self, *args, **kwargs):
-        logger = logging.getLogger('scrapy.spidermiddlewares.httperror')
-        logger.setLevel(logging.WARNING)
-        super().__init__(*args, **kwargs)
+    search_depth = 10000
 
     def start_requests(self):
         yield Request(self.user_url.format(user=self.start_user, include=self.user_query), self.parse_user,
@@ -44,12 +37,13 @@ class ZhihuSpider(scrapy.Spider):
         yield items
         depth = response.meta['depth']
         print(depth)
-        depth = depth + 1
         if depth <= self.search_depth:
+            depth = depth + 1
             yield Request(
                 self.follows_url.format(user=result.get('url_token'), include=self.follows_query, limit=20, offset=0),
                 self.parse_follows,
                 meta={'depth': depth})
+
 
 
     def parse_follows(self, response):
