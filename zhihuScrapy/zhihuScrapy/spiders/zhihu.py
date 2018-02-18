@@ -3,6 +3,7 @@ import scrapy
 from scrapy.http import Request
 import json
 from zhihuScrapy.items import UserItem
+import logging
 
 
 class ZhihuSpider(scrapy.Spider):
