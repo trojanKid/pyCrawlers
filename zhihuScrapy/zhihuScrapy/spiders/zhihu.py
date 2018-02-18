@@ -4,12 +4,15 @@ from scrapy.http import Request
 import json
 from zhihuScrapy.items import UserItem
 
+
 class ZhihuSpider(scrapy.Spider):
     name = 'zhihu'
     allowed_domains = ['www.zhihu.com']
     user_url = 'https://www.zhihu.com/api/v4/members/{user}?include={include}'
     follows_url = 'https://www.zhihu.com/api/v4/members/{user}/followers?include={include}&amp;' \
                   'offset={offset}&amp;limit={limit}'
+    followees_url = 'https://www.zhihu.com/api/v4/members/{user}/followees?include={include}&amp;' \
+                    'offset={offset}&amp;limit={limit}'
     start_user = 'zhang-jia-wei'
     user_query = 'locations,employments,gender,educations,business,voteup_count,thanked_Count,follower_count,' \
                  'following_count,cover_url,following_topic_count,following_question_count,following_favlists_count,' \
@@ -21,11 +24,9 @@ class ZhihuSpider(scrapy.Spider):
                  'description,hosted_live_count,participated_live_count,allow_message,industry_category,org_name,' \
                  'org_homepage,badge[?(type=best_answerer)].topics'
     follows_query = 'url_token'
-    search_depth = 10000
 
     def start_requests(self):
-        yield Request(self.user_url.format(user=self.start_user, include=self.user_query), self.parse_user,
-                      meta={'depth': 0})
+        yield Request(self.user_url.format(user=self.start_user, include=self.user_query), self.parse_user)
 
     def parse_user(self, response):
         # print(response.text)
@@ -35,29 +36,24 @@ class ZhihuSpider(scrapy.Spider):
             if field in result.keys():
                 items[field] = result.get(field)
         yield items
-        depth = response.meta['depth']
-        print(depth)
-        if depth <= self.search_depth:
-            depth = depth + 1
-            yield Request(
-                self.follows_url.format(user=result.get('url_token'), include=self.follows_query, limit=20, offset=0),
-                self.parse_follows,
-                meta={'depth': depth})
 
-
+        yield Request(
+            self.follows_url.format(user=result.get('url_token'), include=self.follows_query, limit=20, offset=0),
+            self.parse_follows)
+        yield Request(
+            self.followees_url.format(user=result.get('url_token'), include=self.follows_query, limit=20, offset=0),
+            self.parse_follows)
 
     def parse_follows(self, response):
         results = json.loads(response.text)
-        depth = response.meta['depth']
 
         if 'data' in results.keys():
             for result in results.get('data'):
+                print('aaa')
                 yield Request(self.user_url.format(user=result.get('url_token'), include=self.user_query),
-                              self.parse_user,
-                              meta={'depth': depth})
+                              self.parse_user)
 
         if 'paging' in results.keys() and results.get('paging').get('is_end') == False:
             next_page = results.get('paging').get('next')
-            yield Request(next_page,
-                          self.parse_follows,
-                          meta={'depth': depth})
+            print('bbb')
+            yield Request(next_page, self.parse_follows)
