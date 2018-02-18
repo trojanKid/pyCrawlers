@@ -49,11 +49,11 @@ class ZhihuSpider(scrapy.Spider):
 
         if 'data' in results.keys():
             for result in results.get('data'):
-                print('aaa')
+                # print('aaa')
                 yield Request(self.user_url.format(user=result.get('url_token'), include=self.user_query),
                               self.parse_user)
 
         if 'paging' in results.keys() and results.get('paging').get('is_end') == False:
             next_page = results.get('paging').get('next')
-            print('bbb')
+            # print('bbb')
             yield Request(next_page, self.parse_follows)
