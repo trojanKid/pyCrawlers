@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f976b858-c537-46ab-a092-24de1f30bca5" name="Default" comment="">
+    <list default="true" id="f976b858-c537-46ab-a092-24de1f30bca5" name="Default" comment="add a pipeline to store data to mongodb">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/myFirstScrapy/myFirstScrapy/spiders/mySpider.py" afterPath="$PROJECT_DIR$/myFirstScrapy/myFirstScrapy/spiders/mySpider.py" />
-      <change beforePath="$PROJECT_DIR$/zhihuScrapy/Readme" afterPath="$PROJECT_DIR$/zhihuScrapy/Readme" />
-      <change beforePath="$PROJECT_DIR$/zhihuScrapy/zhihuScrapy/items.py" afterPath="$PROJECT_DIR$/zhihuScrapy/zhihuScrapy/items.py" />
-      <change beforePath="$PROJECT_DIR$/zhihuScrapy/zhihuScrapy/pipelines.py" afterPath="$PROJECT_DIR$/zhihuScrapy/zhihuScrapy/pipelines.py" />
-      <change beforePath="$PROJECT_DIR$/zhihuScrapy/zhihuScrapy/settings.py" afterPath="$PROJECT_DIR$/zhihuScrapy/zhihuScrapy/settings.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -32,21 +27,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/zhihuScrapy/zhihuScrapy/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1020">
-              <caret line="68" column="18" lean-forward="true" selection-start-line="68" selection-start-column="18" selection-end-line="68" selection-end-column="18" />
+            <state relative-caret-position="135">
+              <caret line="9" column="68" lean-forward="true" selection-start-line="9" selection-start-column="68" selection-end-line="9" selection-end-column="68" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="zhihu.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="zhihu.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/zhihuScrapy/zhihuScrapy/spiders/zhihu.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="78">
-              <caret line="39" column="20" lean-forward="true" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="20" />
+            <state relative-caret-position="339">
+              <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
               <folding>
                 <element signature="e#24#37#0" expanded="true" />
               </folding>
@@ -185,6 +180,11 @@
               <item name="pyCrawlers" type="462c0819:PsiDirectoryNode" />
               <item name="myFirstScrapy" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="pyCrawlers" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pyCrawlers" type="462c0819:PsiDirectoryNode" />
+              <item name="zhihuScrapy" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -300,7 +300,14 @@
       <option name="project" value="LOCAL" />
       <updated>1518833585299</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="add a pipeline to store data to mongodb">
+      <created>1518853158362</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1518853158362</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TodoView">
@@ -370,7 +377,8 @@
     <MESSAGE value="add an entry point file for zhihu scrapy" />
     <MESSAGE value="some changes" />
     <MESSAGE value="complete the spider part based on DL-DFS(depth-limited dfs)" />
-    <option name="LAST_COMMIT_MESSAGE" value="complete the spider part based on DL-DFS(depth-limited dfs)" />
+    <MESSAGE value="add a pipeline to store data to mongodb" />
+    <option name="LAST_COMMIT_MESSAGE" value="add a pipeline to store data to mongodb" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -537,21 +545,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/zhihuScrapy/zhihuScrapy/spiders/zhihu.py">
+    <entry file="file://$PROJECT_DIR$/zhihuScrapy/zhihuScrapy/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="39" column="20" lean-forward="true" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="20" />
-          <folding>
-            <element signature="e#24#37#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="135">
+          <caret line="9" column="68" lean-forward="true" selection-start-line="9" selection-start-column="68" selection-end-line="9" selection-end-column="68" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/zhihuScrapy/zhihuScrapy/settings.py">
+    <entry file="file://$PROJECT_DIR$/zhihuScrapy/zhihuScrapy/spiders/zhihu.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="68" column="18" lean-forward="true" selection-start-line="68" selection-start-column="18" selection-end-line="68" selection-end-column="18" />
-          <folding />
+        <state relative-caret-position="339">
+          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding>
+            <element signature="e#24#37#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
