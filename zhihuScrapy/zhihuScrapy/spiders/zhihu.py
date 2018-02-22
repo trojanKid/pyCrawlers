@@ -26,7 +26,7 @@ class ZhihuSpider(scrapy.Spider):
     follows_query = 'url_token'
 
     def start_requests(self):
-        yield Request(self.user_url.format(user=self.start_user, include=self.user_query), self.parse_user, meta={'proxy':'http://198.199.120.102:3128'})
+        yield Request(self.user_url.format(user=self.start_user, include=self.user_query), self.parse_user, meta={'proxy':'http://199.195.253.124:3128'})
 
     def parse_user(self, response):
         # print(response.text)
@@ -40,7 +40,7 @@ class ZhihuSpider(scrapy.Spider):
         yield Request(
             self.follows_url.format(user=result.get('url_token'), include=self.follows_query, limit=50, offset=0),
             self.parse_follows,
-            meta={'proxy': 'http://198.199.120.102:3128'})
+            meta={'proxy': 'http://199.195.253.124:3128'})
         # yield Request(
         #     self.followees_url.format(user=result.get('url_token'), include=self.follows_query, limit=20, offset=0),
         #     self.parse_follows)
@@ -53,9 +53,9 @@ class ZhihuSpider(scrapy.Spider):
                 # print('aaa')
                 yield Request(self.user_url.format(user=result.get('url_token'), include=self.user_query),
                               self.parse_user,
-                              meta={'proxy': 'http://198.199.120.102:3128'})
+                              meta={'proxy': 'http://199.195.253.124:3128'})
 
         if 'paging' in results.keys() and results.get('paging').get('is_end') == False:
             next_page = results.get('paging').get('next')
             # print('bbb')
-            yield Request(next_page, self.parse_follows, meta={'proxy': 'http://198.199.120.102:3128'})
+            yield Request(next_page, self.parse_follows, meta={'proxy': 'http://199.195.253.124:3128'})
