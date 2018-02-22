@@ -11,9 +11,9 @@ class ZhihuSpider(scrapy.Spider):
     user_url = 'https://www.zhihu.com/api/v4/members/{user}?include={include}'
     follows_url = 'https://www.zhihu.com/api/v4/members/{user}/followers?include={include}&amp;' \
                   'offset={offset}&amp;limit={limit}'
-    followees_url = 'https://www.zhihu.com/api/v4/members/{user}/followees?include={include}&amp;' \
-                    'offset={offset}&amp;limit={limit}'
-    start_user = 'pansz'
+    # followees_url = 'https://www.zhihu.com/api/v4/members/{user}/followees?include={include}&amp;' \
+    #                 'offset={offset}&amp;limit={limit}'
+    start_user = 'pi-bo-shi-tai-kong-jing-niang'
     user_query = 'locations,employments,gender,educations,business,voteup_count,thanked_Count,follower_count,' \
                  'following_count,cover_url,following_topic_count,following_question_count,following_favlists_count,' \
                  'following_columns_count,answer_count,articles_count,pins_count,question_count,' \
@@ -26,7 +26,7 @@ class ZhihuSpider(scrapy.Spider):
     follows_query = 'url_token'
 
     def start_requests(self):
-        yield Request(self.user_url.format(user=self.start_user, include=self.user_query), self.parse_user)
+        yield Request(self.user_url.format(user=self.start_user, include=self.user_query), self.parse_user, meta={'proxy':'http://198.199.120.102:3128'})
 
     def parse_user(self, response):
         # print(response.text)
@@ -39,10 +39,11 @@ class ZhihuSpider(scrapy.Spider):
 
         yield Request(
             self.follows_url.format(user=result.get('url_token'), include=self.follows_query, limit=50, offset=0),
-            self.parse_follows)
-        yield Request(
-            self.followees_url.format(user=result.get('url_token'), include=self.follows_query, limit=20, offset=0),
-            self.parse_follows)
+            self.parse_follows,
+            meta={'proxy': 'http://198.199.120.102:3128'})
+        # yield Request(
+        #     self.followees_url.format(user=result.get('url_token'), include=self.follows_query, limit=20, offset=0),
+        #     self.parse_follows)
 
     def parse_follows(self, response):
         results = json.loads(response.text)
@@ -51,9 +52,10 @@ class ZhihuSpider(scrapy.Spider):
             for result in results.get('data'):
                 # print('aaa')
                 yield Request(self.user_url.format(user=result.get('url_token'), include=self.user_query),
-                              self.parse_user)
+                              self.parse_user,
+                              meta={'proxy': 'http://198.199.120.102:3128'})
 
         if 'paging' in results.keys() and results.get('paging').get('is_end') == False:
             next_page = results.get('paging').get('next')
             # print('bbb')
-            yield Request(next_page, self.parse_follows)
+            yield Request(next_page, self.parse_follows, meta={'proxy': 'http://198.199.120.102:3128'})
