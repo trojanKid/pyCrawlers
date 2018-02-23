@@ -97,6 +97,5 @@ HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 MONGODB_URI = 'mongodb://localhost:27017'
 MONGODB_DBNAME = 'zhihu_data'
 
-#set defualt log error
-# LOG_LEVEL = 'ERROR'
-
+# set defualt log error
+LOG_LEVEL = 'ERROR'
