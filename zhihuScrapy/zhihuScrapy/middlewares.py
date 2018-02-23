@@ -101,3 +101,10 @@ class ZhihuscrapyDownloaderMiddleware(object):
 
     def spider_opened(self, spider):
         spider.logger.info('Spider opened: %s' % spider.name)
+
+
+class ProxyMiddleware(object):
+
+    @classmethod
+    def process_request(self, request, spider):
+        request.meta['proxy'] = 'http://212.47.254.249:3128'
