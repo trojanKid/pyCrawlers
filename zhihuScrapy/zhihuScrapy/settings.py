@@ -98,4 +98,4 @@ MONGODB_URI = 'mongodb://localhost:27017'
 MONGODB_DBNAME = 'zhihu_data'
 
 # set defualt log error
-LOG_LEVEL = 'ERROR'
+# LOG_LEVEL = 'ERROR'

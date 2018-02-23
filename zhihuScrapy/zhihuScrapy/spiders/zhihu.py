@@ -13,7 +13,7 @@ class ZhihuSpider(scrapy.Spider):
                   'offset={offset}&amp;limit={limit}'
     # followees_url = 'https://www.zhihu.com/api/v4/members/{user}/followees?include={include}&amp;' \
     #                 'offset={offset}&amp;limit={limit}'
-    start_user = 'pi-bo-shi-tai-kong-jing-niang'
+    start_user = 'liu-yi-50-30'
     user_query = 'locations,employments,gender,educations,business,voteup_count,thanked_Count,follower_count,' \
                  'following_count,cover_url,following_topic_count,following_question_count,following_favlists_count,' \
                  'following_columns_count,answer_count,articles_count,pins_count,question_count,' \
