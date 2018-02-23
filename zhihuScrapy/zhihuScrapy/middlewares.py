@@ -6,6 +6,7 @@
 # https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
 from scrapy import signals
+import random
 
 
 class ZhihuscrapySpiderMiddleware(object):
@@ -101,3 +102,22 @@ class ZhihuscrapyDownloaderMiddleware(object):
 
     def spider_opened(self, spider):
         spider.logger.info('Spider opened: %s' % spider.name)
+
+
+class ProxyMiddleware(object):
+
+    proxyList = [
+        '212.47.254.249:3128',
+        '212.83.136.159:8080',
+        '207.154.231.217:8080',
+        '207.224.16.120:10773',
+        '209.198.197.165:80',
+        '213.6.40.142:80',
+        '223.19.51.247:8383',
+        '223.19.41.6:8380'
+
+    ]
+
+    @classmethod
+    def process_request(self, request, spider):
+        request.meta['proxy'] = 'http://{}'.format(random.choice(self.proxyList))
